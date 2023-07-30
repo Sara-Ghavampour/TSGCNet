@@ -19,7 +19,7 @@ if __name__ == "__main__":
     os.environ["CUDA_VISIBLE_DEVICES"] = '0, 1'
     """-------------------------- parameters --------------------------------------"""
     batch_size = 2
-    k = 32
+    k = 16
 
     """--------------------------- create Folder ----------------------------------"""
     experiment_dir = Path('./experiment/')
@@ -48,7 +48,7 @@ if __name__ == "__main__":
 
     """--------------------------- Build Network and optimizer----------------------"""
     model = TSGCNet(in_channels=12, output_channels=8, k=k)
-    model = torch.nn.DataParallel(model, device_ids=[0,1])
+    model = torch.nn.DataParallel(model, device_ids=[0])
     model.cuda()
     optimizer = torch.optim.Adam(
     model.parameters(),
